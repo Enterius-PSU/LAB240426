@@ -1,4 +1,4 @@
-<img width="435" height="402" alt="10" src="https://github.com/user-attachments/assets/b05e6504-0bfc-46f0-aff3-4c33dd677537" />
+
 # Кушев Александр БАС-2 Лабораторная №7
 
 # Задание 1
@@ -30,6 +30,7 @@
 
 
 ### Тестирование
+
 
 
 
@@ -72,6 +73,7 @@
 
 
 
+<img width="397" height="187" alt="2" src="https://github.com/user-attachments/assets/f099ee47-7067-472a-bae3-df9754b94bac" />
 
 
 
@@ -104,6 +106,9 @@
 
 
 ### Тестирование
+
+
+
 
 
 
