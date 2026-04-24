@@ -34,6 +34,7 @@
 
 
 
+<img width="412" height="296" alt="1" src="https://github.com/user-attachments/assets/9dc8afe1-7e28-4422-b4a6-ae61e21cef92" />
 
 
 
@@ -110,6 +111,7 @@
 
 
 
+<img width="397" height="151" alt="3task" src="https://github.com/user-attachments/assets/05ca526e-e917-44d6-9f0e-0a26e3f32344" />
 
 
 
