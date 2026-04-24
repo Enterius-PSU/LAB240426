@@ -1,3 +1,4 @@
+<img width="435" height="402" alt="10" src="https://github.com/user-attachments/assets/b05e6504-0bfc-46f0-aff3-4c33dd677537" />
 # Кушев Александр БАС-2 Лабораторная №7
 
 # Задание 1
@@ -32,7 +33,9 @@
 
 
 
-Скриншоты результата работы программы
+
+
+
 
 
 
@@ -68,7 +71,9 @@
 
 
 
-Скриншоты результата работы программы
+
+
+
 
 
 
@@ -102,7 +107,7 @@
 
 
 
-Скриншоты результата работы программы
+
 
 
 
@@ -138,7 +143,8 @@
 
 
 
-Скриншоты результата работы программы
+<img width="651" height="78" alt="4" src="https://github.com/user-attachments/assets/f5b1a5a0-c5ef-45ce-bdc2-fced5871c351" />
+
 
 
 
@@ -170,7 +176,8 @@
 
 
 
-Скриншоты результата работы программы
+<img width="781" height="801" alt="5" src="https://github.com/user-attachments/assets/a26d1c65-2a5e-4254-93cb-0f2af4fb2737" />
+
 
 
 
@@ -206,7 +213,8 @@
 
 
 
-Скриншоты результата работы программы
+<img width="487" height="105" alt="6" src="https://github.com/user-attachments/assets/9909cc50-43ed-4a58-a3cd-9361a6ab5a65" />
+
 
 
 
@@ -244,7 +252,8 @@
 
 
 
-Скриншоты результата работы программы
+<img width="637" height="108" alt="7" src="https://github.com/user-attachments/assets/a50fb0b2-b485-46ef-9081-62d517c277f8" />
+
 
 
 
@@ -290,7 +299,8 @@
 
 
 
-Скриншоты результата работы программы
+<img width="558" height="813" alt="8" src="https://github.com/user-attachments/assets/3b01a827-d207-4bbd-8f66-a4dc21269c20" />
+
 
 
 
@@ -328,7 +338,8 @@
 
 
 
-Скриншоты результата работы программы
+<img width="652" height="113" alt="9" src="https://github.com/user-attachments/assets/0dee5bc0-6485-4378-b850-1b15ade5432a" />
+
 
 # Задание 10
 
@@ -403,6 +414,6 @@
 ### Тестирование
 
 
+<img width="435" height="402" alt="10" src="https://github.com/user-attachments/assets/e5cb8e13-c661-44cc-a7c0-50a75536c49a" />
 
-Скриншоты результата работы программы
 
