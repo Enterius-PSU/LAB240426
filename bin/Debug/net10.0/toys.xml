@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfToy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Toy>
-    <Name>Конструктор1</Name>
-    <Cost>2681</Cost>
-    <AgeMin>0</AgeMin>
-    <AgeMax>1</AgeMax>
+    <Name>Кукла1</Name>
+    <Cost>2334</Cost>
+    <AgeMin>3</AgeMin>
+    <AgeMax>2</AgeMax>
   </Toy>
   <Toy>
     <Name>Машинка2</Name>
-    <Cost>508</Cost>
-    <AgeMin>6</AgeMin>
-    <AgeMax>3</AgeMax>
+    <Cost>4960</Cost>
+    <AgeMin>3</AgeMin>
+    <AgeMax>5</AgeMax>
   </Toy>
   <Toy>
-    <Name>Медвежонок3</Name>
-    <Cost>633</Cost>
-    <AgeMin>1</AgeMin>
-    <AgeMax>3</AgeMax>
-  </Toy>
-  <Toy>
-    <Name>Машинка4</Name>
-    <Cost>3671</Cost>
-    <AgeMin>1</AgeMin>
+    <Name>Кукла3</Name>
+    <Cost>1615</Cost>
+    <AgeMin>3</AgeMin>
     <AgeMax>7</AgeMax>
   </Toy>
   <Toy>
-    <Name>Машинка5</Name>
-    <Cost>2019</Cost>
-    <AgeMin>6</AgeMin>
-    <AgeMax>4</AgeMax>
+    <Name>Конструктор4</Name>
+    <Cost>2422</Cost>
+    <AgeMin>2</AgeMin>
+    <AgeMax>5</AgeMax>
+  </Toy>
+  <Toy>
+    <Name>Конструктор5</Name>
+    <Cost>4875</Cost>
+    <AgeMin>5</AgeMin>
+    <AgeMax>1</AgeMax>
   </Toy>
 </ArrayOfToy>

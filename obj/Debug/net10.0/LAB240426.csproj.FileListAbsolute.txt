@@ -12,3 +12,17 @@ C:\Projects\C#Projects\LAB240426\obj\Debug\net10.0\refint\LAB240426.dll
 C:\Projects\C#Projects\LAB240426\obj\Debug\net10.0\LAB240426.pdb
 C:\Projects\C#Projects\LAB240426\obj\Debug\net10.0\LAB240426.genruntimeconfig.cache
 C:\Projects\C#Projects\LAB240426\obj\Debug\net10.0\ref\LAB240426.dll
+C:\Projects\C#Projects\LAB240426_Original\bin\Debug\net10.0\LAB240426.exe
+C:\Projects\C#Projects\LAB240426_Original\bin\Debug\net10.0\LAB240426.deps.json
+C:\Projects\C#Projects\LAB240426_Original\bin\Debug\net10.0\LAB240426.runtimeconfig.json
+C:\Projects\C#Projects\LAB240426_Original\bin\Debug\net10.0\LAB240426.dll
+C:\Projects\C#Projects\LAB240426_Original\bin\Debug\net10.0\LAB240426.pdb
+C:\Projects\C#Projects\LAB240426_Original\obj\Debug\net10.0\LAB240426.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\C#Projects\LAB240426_Original\obj\Debug\net10.0\LAB240426.AssemblyInfoInputs.cache
+C:\Projects\C#Projects\LAB240426_Original\obj\Debug\net10.0\LAB240426.AssemblyInfo.cs
+C:\Projects\C#Projects\LAB240426_Original\obj\Debug\net10.0\LAB240426.csproj.CoreCompileInputs.cache
+C:\Projects\C#Projects\LAB240426_Original\obj\Debug\net10.0\LAB240426.dll
+C:\Projects\C#Projects\LAB240426_Original\obj\Debug\net10.0\refint\LAB240426.dll
+C:\Projects\C#Projects\LAB240426_Original\obj\Debug\net10.0\LAB240426.pdb
+C:\Projects\C#Projects\LAB240426_Original\obj\Debug\net10.0\LAB240426.genruntimeconfig.cache
+C:\Projects\C#Projects\LAB240426_Original\obj\Debug\net10.0\ref\LAB240426.dll
