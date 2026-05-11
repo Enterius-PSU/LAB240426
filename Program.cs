@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using System.Xml.Serialization;
 
 internal class Program
 {
@@ -53,30 +52,44 @@ internal class Program
         try
         {
             List<int> compressed = Tasks6To10.Task6();
-            Console.WriteLine("Результат: " + string.Join(" ", compressed) + "\n");
+            Console.WriteLine("Результат (удаление повторов подряд): " + string.Join(" ", compressed) + "\n");
 
-            var singly = Tasks6To10.InputSinglyLinkedList();
-            Console.Write("Введённый односвязный список: ");
-            var current = singly.Head;
-            while (current != null)
+            List<int> inputList = Tasks6To10.InputList();
+            Console.Write("Введённый список: ");
+            foreach (int num in inputList)
             {
-                Console.Write(current.Data + " ");
-                current = current.Next;
+                Console.Write(num + " ");
             }
             Console.WriteLine();
-            LinkedList<int> doubly = Tasks6To10.Task7(singly);
+            LinkedList<int> doubly = Tasks6To10.Task7(inputList);
             Console.WriteLine("Двунаправленный список: " + string.Join(" ", doubly) + "\n");
 
             Tasks6To10.Task8();
             Console.WriteLine();
 
             string textFile = "russian_text.txt";
-            File.WriteAllText(textFile, "Мама мыла раму. Папа мыл пол. Дочка играла.", Encoding.UTF8);
-            Tasks6To10.Task9(textFile);  
+            if (!File.Exists(textFile))
+            {
+                File.WriteAllText(textFile, "Мама мыла раму. Папа мыл пол. Дочка играла.", Encoding.UTF8);
+            }
+            Tasks6To10.Task9(textFile);
             Console.WriteLine();
 
             string studentsFile = "students.txt";
-            File.WriteAllLines(studentsFile, new string[] { "7", "Иванова Мария", "Петров Сергей", "Бойцова Екатерина", "Петров Иван", "Иванова Наташа", "Петров Евгений", "Кушев Александр" }, Encoding.UTF8);
+            if (!File.Exists(studentsFile))
+            {
+                File.WriteAllLines(studentsFile, new string[]
+                {
+                    "7",
+                    "Иванова Мария",
+                    "Петров Сергей",
+                    "Бойцова Екатерина",
+                    "Петров Иван",
+                    "Иванова Наташа",
+                    "Петров Евгений",
+                    "Кушев Александр"
+                }, Encoding.UTF8);
+            }
             Tasks6To10.Task10(studentsFile);
         }
         catch (Exception ex)
