@@ -1,44 +1,67 @@
 using System.Text;
 using System.Xml.Serialization;
 
-public static class Tasks1To5
+struct Toy
 {
-    public struct Toy
+    private string _name;
+    private int _cost;
+    private int _ageMin;
+    private int _ageMax;
+
+    public string Name
     {
-        public string Name;
-        public int Cost;
-        public int AgeMin;
-        public int AgeMax;
+        get { return _name; }
+        set { _name = value; }
     }
 
-    private static readonly Random _random = new Random();
+    public int Cost
+    {
+        get { return _cost; }
+        set { _cost = value; }
+    }
 
+    public int AgeMin
+    {
+        get { return _ageMin; }
+        set { _ageMin = value; }
+    }
+
+    public int AgeMax
+    {
+        get { return _ageMax; }
+        set { _ageMax = value; }
+    }
+}
+
+internal static class Tasks1To5
+{
     public static void FillTextFileSingle(string filePath, int count)
     {
+        Random random = new Random();
         using (StreamWriter writer = new StreamWriter(filePath))
         {
             for (int i = 0; i < count; i++)
             {
-                writer.WriteLine(_random.Next(-100, 101));
+                writer.WriteLine(random.Next(-100, 101));
             }
         }
     }
 
     public static void FillTextFileMultiple(string filePath, int linesCount, int numbersPerLine)
     {
+        Random random = new Random();
         using (StreamWriter writer = new StreamWriter(filePath))
         {
-            StringBuilder? line = null;
             for (int i = 0; i < linesCount; i++)
             {
-                line = new StringBuilder();
+                StringBuilder line = new StringBuilder();
                 for (int j = 0; j < numbersPerLine; j++)
                 {
                     if (j > 0)
                     {
                         line.Append(' ');
                     }
-                    line.Append(_random.Next(-100, 101));
+                    line.Append(random.Next(-100, 101));
                 }
                 writer.WriteLine(line.ToString());
             }
@@ -56,7 +79,7 @@ public static class Tasks1To5
         int max = int.MinValue;
         using (StreamReader reader = new StreamReader(filePath))
         {
-            string? line = "";
+            string? line;
             while ((line = reader.ReadLine()) != null)
             {
                 if (string.IsNullOrWhiteSpace(line))
@@ -73,7 +96,7 @@ public static class Tasks1To5
                 }
                 if (number > max)
                 {
-                   max = number; 
+                    max = number;
                 }
             }
         }
@@ -95,15 +118,14 @@ public static class Tasks1To5
         int sum = 0;
         using (StreamReader reader = new StreamReader(filePath))
         {
-            string? line = "";
-            string[]? parts = null;
+            string? line;
             while ((line = reader.ReadLine()) != null)
             {
                 if (string.IsNullOrWhiteSpace(line))
                 {
                     continue;
                 }
-                parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
                 foreach (string part in parts)
                 {
                     if (!int.TryParse(part, out int number))
@@ -127,24 +149,38 @@ public static class Tasks1To5
             throw new FileNotFoundException("Исходный файл не найден", inputFilePath);
         }
 
+        string? directory = Path.GetDirectoryName(outputFilePath);
+        if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
+        {
+            Directory.CreateDirectory(directory);
+        }
+
         using (StreamReader reader = new StreamReader(inputFilePath))
         using (StreamWriter writer = new StreamWriter(outputFilePath))
         {
-            string? line = "";
+            string? line;
             while ((line = reader.ReadLine()) != null)
             {
-                writer.WriteLine(line.Length > 0 ? line[line.Length - 1] : "");
+                if (line.Length > 0)
+                {
+                    writer.WriteLine(line[line.Length - 1]);
+                }
+                else
+                {
+                    writer.WriteLine();
+                }
             }
         }
     }
 
     public static void FillBinaryFileNumbers(string filePath, int count)
     {
+        Random random = new Random();
         using (BinaryWriter writer = new BinaryWriter(File.Open(filePath, FileMode.Create)))
         {
             for (int i = 0; i < count; i++)
             {
-                writer.Write(_random.Next(-100, 101));
+                writer.Write(random.Next(-100, 101));
             }
         }
     }
@@ -161,7 +197,8 @@ public static class Tasks1To5
         {
             while (reader.BaseStream.Position < reader.BaseStream.Length)
             {
-                if (reader.ReadInt32() % 4 == 2)
+                int value = reader.ReadInt32();
+                if (value % 4 == 2)
                 {
                     count++;
                 }
@@ -172,17 +209,17 @@ public static class Tasks1To5
 
     public static void FillBinaryFileToys(string filePath, int count)
     {
+        Random random = new Random();
         List<Toy> toys = new List<Toy>();
         string[] possibleNames = { "Медвежонок", "Кукла", "Машинка", "Конструктор", "Пирамидка", "Мяч" };
         for (int i = 0; i < count; i++)
         {
-            toys.Add(new Toy
-            {
-                Name = possibleNames[_random.Next(possibleNames.Length)] + (i + 1),
-                Cost = _random.Next(100, 5000),
-                AgeMin = _random.Next(0, 7),
-                AgeMax = _random.Next(1, 8)
-            });
+            Toy toy = new Toy();
+            toy.Name = possibleNames[random.Next(possibleNames.Length)] + (i + 1);
+            toy.Cost = random.Next(100, 5000);
+            toy.AgeMin = random.Next(0, 7);
+            toy.AgeMax = random.Next(1, 8);
+            toys.Add(toy);
         }
         XmlSerializer serializer = new XmlSerializer(typeof(List<Toy>));
         using (StreamWriter writer = new StreamWriter(filePath))
@@ -199,22 +236,24 @@ public static class Tasks1To5
         }
 
         XmlSerializer serializer = new XmlSerializer(typeof(List<Toy>));
-        List<Toy> toys;
+        List<Toy>? toys;
         using (StreamReader reader = new StreamReader(filePath))
         {
             toys = (List<Toy>)serializer.Deserialize(reader)!;
         }
-        if (toys.Count == 0)
+        if (toys == null || toys.Count == 0)
         {
             throw new InvalidOperationException("Нет игрушек!");
         }
 
         Toy cheapest = toys[0];
         for (int i = 1; i < toys.Count; i++)
+        {
             if (toys[i].Cost < cheapest.Cost)
             {
                 cheapest = toys[i];
             }
+        }
         return cheapest.Name;
     }
 }
