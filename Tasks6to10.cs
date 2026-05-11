@@ -1,65 +1,42 @@
 using System.Text;
-using System.Xml.Serialization;
 
-public static class Tasks6To10
+internal static class Tasks6To10
 {
-    public class SinglyLinkedListNode<T>
-    {
-        public T Data;
-        public SinglyLinkedListNode<T>? Next;
-        public SinglyLinkedListNode(T data) { 
-            Data = data; 
-            Next = null; 
-        }
-    }
-
-    public class SinglyLinkedList<T>
-    {
-        public SinglyLinkedListNode<T>? Head;
-        public void Add(T data)
-        {
-            if (Head == null)
-            {
-                Head = new SinglyLinkedListNode<T>(data);
-            }
-            else
-            {
-                var current = Head;
-                while (current.Next != null)
-                {
-                    current = current.Next;
-                }
-                current.Next = new SinglyLinkedListNode<T>(data);
-            }
-        }
-    }
-
     public static List<int> Task6()
     {
-        Console.WriteLine("Введите элементы списка (целые числа) через пробел:");
-        string? input = Console.ReadLine();
-        if (string.IsNullOrWhiteSpace(input))
-        {
-            return new List<int>();
-        }
-
-        string[] parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         List<int> list = new List<int>();
-        foreach (string part in parts)
+        bool validInput = false;
+        while (!validInput)
         {
-            if (int.TryParse(part, out int num))
+            Console.WriteLine("Введите элементы списка (целые числа) через пробел:");
+            string? input = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(input))
             {
-                list.Add(num);
+                Console.WriteLine("Строка не может быть пустой. Попробуйте снова.");
+                continue;
             }
-            else
-            {
-                Console.WriteLine($"Пропущено некорректное значение: {part}");
-            }
-        }
 
-        if (list.Count == 0)
-        {
-            return list;
+            string[] parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            List<int> tempList = new List<int>();
+            foreach (string part in parts)
+            {
+                if (int.TryParse(part, out int num))
+                {
+                    tempList.Add(num);
+                }
+                else
+                {
+                    Console.WriteLine($"Пропущено некорректное значение: {part}");
+                }
+            }
+
+            if (tempList.Count == 0)
+            {
+                Console.WriteLine("Не введено ни одного целого числа. Попробуйте снова.");
+                continue;
+            }
+            list = tempList;
+            validInput = true;
         }
 
         Console.WriteLine("Исходный список: " + string.Join(" ", list));
@@ -76,90 +53,124 @@ public static class Tasks6To10
         return result;
     }
 
-    public static LinkedList<T> Task7<T>(SinglyLinkedList<T> singlyList)
+    public static LinkedList<T> Task7<T>(List<T> list)
     {
         LinkedList<T> doublyList = new LinkedList<T>();
-        var current = singlyList.Head;
-        while (current != null)
+        foreach (T item in list)
         {
-            doublyList.AddLast(current.Data);
-            current = current.Next;
+            doublyList.AddLast(item);
         }
         return doublyList;
     }
 
-    public static SinglyLinkedList<int> InputSinglyLinkedList()
+    public static List<int> InputList()
     {
-        Console.WriteLine("Введите элементы однонаправленного списка (целые числа) через пробел:");
-        string? input = Console.ReadLine();
-        SinglyLinkedList<int> list = new SinglyLinkedList<int>();
-        if (string.IsNullOrWhiteSpace(input))
+        List<int> list = new List<int>();
+        bool validInput = false;
+        while (!validInput)
         {
-            return list;
-        }
+            Console.WriteLine("Введите элементы списка (целые числа) через пробел:");
+            string? input = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                Console.WriteLine("Строка не может быть пустой. Попробуйте снова.");
+                continue;
+            }
 
-        string[] parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        foreach (string part in parts)
-        {
-            if (int.TryParse(part, out int num))
+            string[] parts = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            List<int> tempList = new List<int>();
+            foreach (string part in parts)
             {
-                list.Add(num);
+                if (int.TryParse(part, out int num))
+                {
+                    tempList.Add(num);
+                }
+                else
+                {
+                    Console.WriteLine($"Пропущено некорректное значение: {part}");
+                }
             }
-            else
+
+            if (tempList.Count == 0)
             {
-                Console.WriteLine($"Пропущено некорректное значение: {part}");
+                Console.WriteLine("Не введено ни одного целого числа. Попробуйте снова.");
+                continue;
             }
+            list = tempList;
+            validInput = true;
         }
         return list;
     }
 
     public static void Task8()
     {
-        Console.WriteLine("Введите перечень факультативов через запятую:");
-        string? allInput = Console.ReadLine();
-        string trimmedFaculties = "";
         HashSet<string> allElectives = new HashSet<string>();
-        if (!string.IsNullOrWhiteSpace(allInput))
+        bool electivesEntered = false;
+        while (!electivesEntered)
         {
-            trimmedFaculties = "";
-            foreach (string e in allInput.Split(',', StringSplitOptions.RemoveEmptyEntries))
+            Console.WriteLine("Введите перечень факультативов через запятую:");
+            string? allInput = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(allInput))
             {
-                trimmedFaculties = e.Trim();
-                if (trimmedFaculties.Length > 0)
+                Console.WriteLine("Список факультативов не может быть пустым. Попробуйте снова.");
+                continue;
+            }
+            string[] electiveParts = allInput.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            allElectives.Clear();
+            foreach (string e in electiveParts)
+            {
+                string trimmed = e.Trim();
+                if (trimmed.Length > 0)
                 {
-                    allElectives.Add(trimmedFaculties);
+                    allElectives.Add(trimmed);
                 }
             }
+            if (allElectives.Count == 0)
+            {
+                Console.WriteLine("Не введено ни одного факультатива. Попробуйте снова.");
+                continue;
+            }
+            electivesEntered = true;
         }
 
-        Console.WriteLine("Введите количество студентов:");
-        if (!int.TryParse(Console.ReadLine(), out int studentCount) || studentCount <= 0)
+        int studentCount = 0;
+        bool validCount = false;
+        while (!validCount)
         {
-            Console.WriteLine("Некорректное количество студентов.");
-            return;
+            Console.WriteLine("Введите количество студентов (целое число от 1 до 100):");
+            string? countInput = Console.ReadLine();
+            if (!int.TryParse(countInput, out studentCount) || studentCount < 1 || studentCount > 100)
+            {
+                Console.WriteLine("Некорректное количество студентов. Допустимы значения от 1 до 100.");
+                continue;
+            }
+            validCount = true;
         }
 
         List<HashSet<string>> studentChoices = new List<HashSet<string>>();
-        string? choicesInput = "";
-        string trimmedStudentFaculties = "";
-        HashSet<string>? studentFacultySet = null;
         for (int i = 0; i < studentCount; i++)
         {
-            Console.WriteLine($"Введите факультативы студента {i + 1} через запятую:");
-            choicesInput = Console.ReadLine();
-            studentFacultySet = new HashSet<string>();
-            if (!string.IsNullOrWhiteSpace(choicesInput))
+            HashSet<string> studentSet = new HashSet<string>();
+            bool validStudent = false;
+            while (!validStudent)
             {
-                foreach (string c in choicesInput.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                Console.WriteLine($"Введите факультативы студента {i + 1} через запятую (можно оставить пустым):");
+                string? choicesInput = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(choicesInput))
                 {
-                    trimmedStudentFaculties = c.Trim();
-                    if (trimmedStudentFaculties.Length > 0)
+                    string[] choices = choicesInput.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string c in choices)
                     {
-                        studentFacultySet.Add(trimmedStudentFaculties);
+                        string trimmed = c.Trim();
+                        if (trimmed.Length > 0)
+                        {
+                            studentSet.Add(trimmed);
+                        }
                     }
                 }
+                validStudent = true;
             }
-            studentChoices.Add(studentFacultySet);
+            studentChoices.Add(studentSet);
         }
 
         Console.WriteLine("\n--- Исходные данные ---");
@@ -173,7 +184,7 @@ public static class Tasks6To10
 
         HashSet<string> union = new HashSet<string>();
         HashSet<string>? intersection = null;
-        foreach (var studentSet in studentChoices)
+        foreach (HashSet<string> studentSet in studentChoices)
         {
             foreach (string s in studentSet)
             {
@@ -203,6 +214,10 @@ public static class Tasks6To10
                 Console.WriteLine(e);
             }
         }
+        else
+        {
+            Console.WriteLine("(нет)");
+        }
 
         HashSet<string> none = new HashSet<string>(allElectives);
         none.ExceptWith(union);
@@ -217,31 +232,48 @@ public static class Tasks6To10
     {
         if (!File.Exists(filePath))
         {
-            Console.WriteLine("Файл не найден.");
+            Console.WriteLine($"Файл {filePath} не найден.");
             return;
         }
 
         string fileContent = File.ReadAllText(filePath, Encoding.UTF8);
+        if (string.IsNullOrWhiteSpace(fileContent))
+        {
+            Console.WriteLine("Файл пуст или содержит только пробельные символы.");
+            return;
+        }
+
         Console.WriteLine("Содержимое файла:");
         Console.WriteLine(fileContent);
 
-        string text = fileContent;
         char[] separators = { ' ', '\t', '\n', '\r', ',', '.', '!', '?', ';', ':', '(', ')', '-', '"', '\'' };
-        string[] words = text.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+        string[] words = fileContent.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+
+        if (words.Length == 0)
+        {
+            Console.WriteLine("В файле нет слов.");
+            return;
+        }
 
         HashSet<char> chars = new HashSet<char>();
         for (int i = 0; i < words.Length; i++)
         {
-            if ((i + 1) % 2 != 0) 
+            if ((i + 1) % 2 != 0)
             {
                 foreach (char c in words[i])
                 {
                     if (char.IsLetter(c))
                     {
-                       chars.Add(char.ToLower(c)); 
+                        chars.Add(char.ToLower(c));
                     }
                 }
             }
+        }
+
+        if (chars.Count == 0)
+        {
+            Console.WriteLine("Не найдено ни одной буквы в словах с нечётными номерами.");
+            return;
         }
 
         List<char> sortedChars = new List<char>(chars);
@@ -270,7 +302,7 @@ public static class Tasks6To10
     {
         if (!File.Exists(filePath))
         {
-            Console.WriteLine("Файл не найден.");
+            Console.WriteLine($"Файл {filePath} не найден.");
             return;
         }
 
@@ -290,31 +322,36 @@ public static class Tasks6To10
 
         if (!int.TryParse(lines[0].Trim(), out int N) || N <= 0 || N > 100)
         {
-            Console.WriteLine("Некорректное количество учеников (1-100).");
+            Console.WriteLine("Некорректное количество учеников в первой строке (должно быть целое число от 1 до 100).");
+            return;
+        }
+
+        if (lines.Length - 1 < N)
+        {
+            Console.WriteLine($"В файле указано {N} учеников, но данных меньше.");
             return;
         }
 
         Dictionary<string, int> counter = new Dictionary<string, int>();
         List<string> logins = new List<string>();
 
-        string[]? parts = null;
-        string? surname = "";
-        string? line = "";
-        for (int i = 1; i <= N && i < lines.Length; i++)
+        for (int i = 1; i <= N; i++)
         {
-            line = lines[i].Trim();
+            string line = lines[i].Trim();
             if (string.IsNullOrEmpty(line))
             {
+                Console.WriteLine($"Строка {i} пуста, пропущена.");
                 continue;
             }
 
-            parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            string[] parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             if (parts.Length < 2)
             {
+                Console.WriteLine($"Строка {i} не содержит фамилии и имени: \"{line}\". Пропущена.");
                 continue;
             }
 
-            surname = parts[0];
+            string surname = parts[0];
             if (counter.ContainsKey(surname))
             {
                 counter[surname]++;
